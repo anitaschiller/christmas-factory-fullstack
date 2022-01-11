@@ -1,0 +1,21 @@
+{
+  "name": "christmas-factory-fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd ./client && npm run build",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/server.js",
+    "client": "cd ./client && npm run dev",
+    "start": "node server/server.js",
+    "postinstall": "cd ./client && npm install && cd ../server && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
