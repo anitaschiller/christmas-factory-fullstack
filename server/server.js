@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 
 import CategoriesRoutes from './routes/categories.routes.js';
 import ProductsRoutes from './routes/products.routes.js';
@@ -19,15 +20,21 @@ const connectionString = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbNa
 
 mongoose.connect(connectionString);
 
+const __dirname = process.cwd();
+
 const server = express();
 
 server.use(cors());
 server.use(express.json());
 
-server.get('/', (req, res) => {
-  res.json({ status: 'Server is up and running' });
-});
-
 server.use('/api', [CategoriesRoutes, ProductsRoutes]);
 
-server.listen(serverPort, () => console.log('Server is started'));
+server.use(express.static(path.join(__dirname, './client/dist')));
+
+server.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, './client/dist', 'index.html'));
+});
+
+server.listen(serverPort, () =>
+  console.log(`Server is started on port ${serverPort}`)
+);
