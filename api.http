@@ -1,0 +1,27 @@
+### Getting products
+
+GET http://localhost:{{$dotenv PORT}}/api/products
+
+### Post new product
+
+POST http://localhost:{{$dotenv PORT}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Vanillekipferl",
+  "price": 4,
+  "isDecorated": false,
+  "category": "Kekse",
+  "packageSize": "M",
+  "tags": ["Zucker", "Vanille"],
+  "contactEmail": "anita@anita.de"
+}
+
+### Post new category
+
+POST http://localhost:{{$dotenv PORT}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "Kerzen"
+}
