@@ -44,8 +44,8 @@ function App() {
     return await result.json();
   }
 
-  function addProduct(product) {
-    addProductToDatabase(product);
+  async function addProduct(product) {
+    await addProductToDatabase(product);
     fetchProducts();
   }
 
