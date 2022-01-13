@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 import ProductForm from './components/ProductForm';
 
-import './App.css';
-
 import { saveToLocal, loadFromLocal } from './lib/localStorage';
 import ProductCard from './components/ProductCard';
 
