@@ -21,7 +21,7 @@ describe('is product on the favourites list', () => {
   });
 });
 
-describe('remove product frpm the favourites list', () => {
+describe('remove product from the favourites list', () => {
   it('should return a new array in which the product is not included anymore', () => {
     const favouriteProducts = [
       { name: 'Vanillekipferl', _id: 2 },
