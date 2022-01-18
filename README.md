@@ -59,4 +59,4 @@ module.exports = {
 }
 ```
 
-5. Add the following script to your `package.json`: `"test": "jest --watch"`
+5. Add the following script to your `package.json`: `"test": "jest --watchAll --verbose"`

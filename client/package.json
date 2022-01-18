@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest --watch"
+    "test": "jest --watchAll --verbose"
   },
   "dependencies": {
     "dotenv": "^11.0.0",
