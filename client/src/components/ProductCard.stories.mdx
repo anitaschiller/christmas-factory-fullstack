@@ -1,0 +1,19 @@
+import ProductCard from './ProductCard';
+
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Components/ProductCard" component={ProductCard} />
+
+<Story name="Simple Product Card">
+  <ProductCard product={{ name: 'Lebkuchen', category: 'Kekse', price: 10 }} />
+</Story>
+
+<Story
+  name="Product Card which is a favorite"
+  args={{
+    product: { name: 'Lebkuchen', category: 'Kekse', price: 10 },
+    isFavourite: true,
+  }}
+>
+  {(args) => <ProductCard {...args} />}
+</Story>
