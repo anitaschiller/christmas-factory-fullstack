@@ -6,7 +6,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest --watchAll --verbose"
   },
   "dependencies": {
     "dotenv": "^11.0.0",
@@ -17,6 +18,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
+    "babel-jest": "^27.4.6",
+    "babel-preset-react-app": "^10.0.1",
+    "jest": "^27.4.7",
+    "jest-watch-typeahead": "^1.0.0",
     "@storybook/addon-actions": "^6.4.12",
     "@storybook/addon-essentials": "^6.4.12",
     "@storybook/addon-links": "^6.4.12",

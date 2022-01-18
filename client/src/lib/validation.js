@@ -13,3 +13,4 @@ const isProductValid = (product) =>
   isValidEmail(product.contactEmail);
 
 export default isProductValid;
+export { hasProductNameMinLength };

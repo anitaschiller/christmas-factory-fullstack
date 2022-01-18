@@ -2,9 +2,15 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import ProductForm from './components/ProductForm';
+import ProductCard from './components/ProductCard';
 
 import { saveToLocal, loadFromLocal } from './lib/localStorage';
-import ProductCard from './components/ProductCard';
+import {
+  isProductInListOfFavourites,
+  removeProductFromListOfFavourites,
+} from './lib/favourites';
+
+import './App.css';
 
 function App() {
   const localStorageProducts = loadFromLocal('_products');
@@ -47,23 +53,11 @@ function App() {
     fetchProducts();
   }
 
-  function isProductInListOfFavourites(favouriteProductToAdd) {
-    return favouriteProducts.some(
-      (everyFavouriteProduct) =>
-        everyFavouriteProduct._id === favouriteProductToAdd._id
-    );
-  }
-
-  function removeProductFromListOfFavourites(product) {
-    return favouriteProducts.filter(
-      (everyFavouriteProduct) => everyFavouriteProduct._id !== product._id
-    );
-  }
-
   function addToFavourites(favouriteProductToAdd) {
     // Produkt ist schon auf der Liste der Favourites => Entfernen!
-    if (isProductInListOfFavourites(favouriteProductToAdd)) {
+    if (isProductInListOfFavourites(favouriteProducts, favouriteProductToAdd)) {
       const favouritesToKeep = removeProductFromListOfFavourites(
+        favouriteProducts,
         favouriteProductToAdd
       );
       setFavouriteProducts(favouritesToKeep);
@@ -82,7 +76,10 @@ function App() {
             key={index}
             product={product}
             index={index}
-            isFavourite={isProductInListOfFavourites(product)}
+            isFavourite={isProductInListOfFavourites(
+              favouriteProducts,
+              product
+            )}
             onAddToFavourites={addToFavourites}
           />
         ))}
