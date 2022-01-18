@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dotenv from 'dotenv';
+import macrosPlugin from 'vite-plugin-babel-macros';
 dotenv.config();
 
 const { PORT = 4000 } = process.env;

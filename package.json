@@ -11,7 +11,9 @@
     "start": "node server/server.js",
     "postinstall": "cd ./client && npm install && cd ../server && npm install",
     "storybook": "cd ./client && npm run storybook",
-    "test": "cd client && npm test"
+    "test": "cd client && npm test",
+    "cy:open": "cd ./client && npm run cy:open",
+    "cy:run": "cd ./client && npm run cy:run"
   },
   "author": "",
   "license": "ISC",
