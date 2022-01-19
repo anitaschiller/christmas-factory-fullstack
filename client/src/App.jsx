@@ -141,6 +141,7 @@ const FavouritesDisplay = styled.aside`
   top: 1rem;
   right: 1rem;
   width: 12rem;
+
   span {
     font-size: 2rem;
     text-align: right;
