@@ -20,6 +20,7 @@ function App() {
   const [favouriteProducts, setFavouriteProducts] = useState(
     localStorageFavouriteProducts ?? []
   );
+  const [wishlistIsOpen, setWishlistIsOpen] = useState(false);
 
   async function fetchProducts() {
     const result = await fetch('api/products');
@@ -35,6 +36,9 @@ function App() {
 
   useEffect(() => {
     saveToLocal('_favouriteProducts', favouriteProducts);
+    if (favouriteProducts.length === 0) {
+      setWishlistIsOpen(false);
+    }
   }, [favouriteProducts]);
 
   async function addProductToDatabase(product) {
@@ -84,11 +88,67 @@ function App() {
           />
         ))}
       </CardTree>
+      <FavouritesDisplay>
+        {favouriteProducts.length === 0 ? (
+          <span>✩</span>
+        ) : (
+          <span onClick={() => setWishlistIsOpen(!wishlistIsOpen)}>
+            ⭐️{' '}
+            <small data-testid="wishlist-items">
+              ({favouriteProducts.length})
+            </small>
+          </span>
+        )}
+
+        {wishlistIsOpen && (
+          <Wishlist>
+            <h3>Deine Wunschliste</h3>
+            {favouriteProducts.map((product, index) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+                index={index}
+                isFavourite={isProductInListOfFavourites(
+                  favouriteProducts,
+                  product
+                )}
+                onAddToFavourites={addToFavourites}
+              />
+            ))}
+          </Wishlist>
+        )}
+      </FavouritesDisplay>
     </Container>
   );
 }
 
 export default App;
+
+const Wishlist = styled.div`
+  background-color: #fcdc3b;
+  border: 3px solid white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+`;
+
+const FavouritesDisplay = styled.aside`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 1rem;
+  right: 1rem;
+  width: 12rem;
+  span {
+    font-size: 2rem;
+    text-align: right;
+    small {
+      font-size: 1rem;
+    }
+  }
+`;
 
 const Container = styled.div`
   display: grid;
@@ -97,7 +157,8 @@ const Container = styled.div`
   grid-template-rows: 1fr;
   height: 100%;
   margin: 0 auto;
-  width: 80%;
+  position: relative;
+  width: 90%;
 `;
 
 const CardTree = styled.div`
