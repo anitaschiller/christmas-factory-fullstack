@@ -60,3 +60,4 @@ module.exports = {
 ```
 
 5. Add the following script to your `package.json`: `"test": "jest --watchAll --verbose"`
+6. Install Jest code completion: `npm install -D @types/jest`
