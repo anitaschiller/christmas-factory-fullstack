@@ -26,7 +26,7 @@ const Card = styled.article`
   background: var(--secondary-color);
   border-radius: 8px;
   grid-column: span 2;
-  padding: 0 1rem 0.5rem;
+  padding: 0.5rem 1rem 0.5rem;
   position: relative;
 
   &:hover {

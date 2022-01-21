@@ -60,3 +60,29 @@ module.exports = {
 ```
 
 5. Add the following script to your `package.json`: `"test": "jest --watchAll --verbose"`
+6. Install Jest code completion: `npm install -D @types/jest`
+
+## Using Cypress
+1. Install Cypress for the React client --> `cd client`
+2. `npm install cypress`
+3. Add the following code to a new file `cypress.json`:
+
+```js
+{
+  "baseUrl": "http://localhost:3000",
+  "integrationFolder": "tests/e2e",
+  "video": false,
+  "fixturesFolder": "tests/e2e/fixtures",
+  "defaultCommandTimeout": 10000
+}
+```
+4. Add the following scripts to your client's `package.json`
+- `"cy:open": "cypress open"`
+- `"cy:run": "cypress run"`
+
+5. Add the follwing scripts to your root folder's `package.json`:
+- `"cy:open": "cd ./client && npm run cy:open"`
+- `"cy:run": "cd ./client && npm run cy:run"
+
+6. Create a `tests/e2` folder inside your client --> add test files here
+7. In order to use Cypress code completion add the following line to each test file: `/// <reference types="Cypress"/>`
