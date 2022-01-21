@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 
+import { ThemeContext } from '../ThemeContext';
 import ProductForm from './components/ProductForm';
 import ProductCard from './components/ProductCard';
 
@@ -13,6 +14,7 @@ import {
 import './App.css';
 
 function App() {
+  const theme = useContext(ThemeContext);
   const localStorageProducts = loadFromLocal('_products');
   const localStorageFavouriteProducts = loadFromLocal('_favouriteProducts');
 
@@ -68,23 +70,25 @@ function App() {
   }
 
   return (
-    <Container>
-      <ProductForm onAddProduct={addProduct} />
-      <CardTree>
-        {products.map((product, index) => (
-          <ProductCard
-            key={index}
-            product={product}
-            index={index}
-            isFavourite={isProductInListOfFavourites(
-              favouriteProducts,
-              product
-            )}
-            onAddToFavourites={addToFavourites}
-          />
-        ))}
-      </CardTree>
-    </Container>
+    <ThemeContext.Provider value={theme}>
+      <Container>
+        <ProductForm onAddProduct={addProduct} />
+        <CardTree>
+          {products.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              index={index}
+              isFavourite={isProductInListOfFavourites(
+                favouriteProducts,
+                product
+              )}
+              onAddToFavourites={addToFavourites}
+            />
+          ))}
+        </CardTree>
+      </Container>
+    </ThemeContext.Provider>
   );
 }
 

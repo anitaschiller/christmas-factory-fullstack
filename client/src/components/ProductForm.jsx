@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 
+import { ThemeContext } from '../../ThemeContext';
 import TextInput from './TextInput';
 import NumberInput from './NumberInput';
 import Checkbox from './Checkbox';
@@ -11,6 +12,8 @@ import ProductTags from './ProductTags';
 import isProductValid from '../lib/validation';
 
 export default function ProductForm({ onAddProduct }) {
+  const theme = useContext(ThemeContext);
+  console.log(theme);
   const initialProduct = {
     name: '',
     price: 0,
