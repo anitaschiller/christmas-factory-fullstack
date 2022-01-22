@@ -114,10 +114,10 @@ function App() {
         </CardTree>
         <FavouritesDisplay>
           {favouriteProducts.length === 0 ? (
-            <span>✩</span>
+            <span>{shopTheme.favSymbolEmpty}</span>
           ) : (
             <span onClick={() => setWishlistIsOpen(!wishlistIsOpen)}>
-              ⭐️{' '}
+              {shopTheme.favSymbolFilled}{' '}
               <small data-testid="wishlist-items">
                 ({favouriteProducts.length})
               </small>
@@ -125,7 +125,7 @@ function App() {
           )}
 
           {wishlistIsOpen && (
-            <Wishlist>
+            <Wishlist theme={shopTheme}>
               <h3>Deine Wunschliste</h3>
               {favouriteProducts.map((product, index) => (
                 <ProductCard
@@ -150,7 +150,7 @@ function App() {
 export default App;
 
 const Wishlist = styled.div`
-  background-color: #fcdc3b;
+  background-color: ${(props) => props.theme.secondaryColor};
   border: 3px solid white;
   border-radius: 5px;
   display: flex;

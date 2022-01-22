@@ -1,4 +1,6 @@
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
+import { useContext } from 'react';
+import { ThemeContext } from '../../ThemeContext';
 
 export default function ProductCard({
   index,
@@ -6,8 +8,10 @@ export default function ProductCard({
   isFavourite,
   onAddToFavourites,
 }) {
+  const theme = useContext(ThemeContext);
   return (
     <Card
+      theme={theme}
       className={'area' + (index < 10 ? index + 1 : '')}
       style={index > 9 ? { gridRowStart: Math.floor((index - 2) / 4) + 3 } : {}}
     >
@@ -16,22 +20,22 @@ export default function ProductCard({
         {product.category} // {product.price} €
       </p>
       <FavouriteIcon onClick={() => onAddToFavourites(product)}>
-        {isFavourite ? '⭐️' : '✩'}
+        {isFavourite ? theme.favSymbolFilled : theme.favSymbolEmpty}
       </FavouriteIcon>
     </Card>
   );
 }
 
 const Card = styled.article`
-  background: var(--secondary-color);
+  background: ${(props) => props.theme.secondaryColor};
   border-radius: 8px;
   grid-column: span 2;
   padding: 0.5rem 1rem 0.5rem;
   position: relative;
 
   &:hover {
-    background: var(--primary-color);
-    color: var(--secondary-color);
+    background: ${(props) => props.theme.primaryColor};
+    color: ${(props) => props.theme.secondaryColor};
   }
 `;
 

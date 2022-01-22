@@ -13,7 +13,6 @@ import isProductValid from '../lib/validation';
 
 export default function ProductForm({ onAddProduct }) {
   const theme = useContext(ThemeContext);
-  console.log(theme);
   const initialProduct = {
     name: '',
     price: 0,
@@ -79,20 +78,17 @@ export default function ProductForm({ onAddProduct }) {
 
   return (
     <section>
-      <h2>🎄 Add a new product 🍪</h2>
+      <h2>{theme.headlineSymbol} Add a new product 🍪</h2>
       {hasFormErrors && (
-        <ErrorMessage data-testid="error-message">
+        <ErrorMessage theme={theme} data-testid="error-message">
           <div>
-            🎅🏽
+            {theme.errorMessageSymbol}
             <div className="bubble">🗯</div>
           </div>
-          <p>
-            <strong>Ho ho ho! </strong>
-            Please check if all fields are correctly filled.
-          </p>
+          <p>{theme.errorMessage}</p>
         </ErrorMessage>
       )}
-      <Form onSubmit={handleSubmit}>
+      <Form theme={theme} onSubmit={handleSubmit}>
         <TextInput
           onTextInputChange={handleChange}
           name="name"
@@ -174,13 +170,14 @@ const InputRow = styled.div`
 `;
 
 const Form = styled.form`
-  background: #620202;
+  background: ${(props) => props.theme.secondaryBg};
   padding: 0.7rem 0.5rem 1.2rem;
   border-radius: 10px;
 
   label {
     display: block;
     font-weight: bold;
+    color: ${(props) => props.theme.primaryColor};
   }
   input,
   select {
@@ -189,10 +186,10 @@ const Form = styled.form`
   }
 
   button {
-    background: var(--button-bg);
-    border: 2px solid var(--button-bg);
+    background: ${(props) => props.theme.buttonBg};
+    border: ${(props) => '2px solid' + props.theme.secondaryBg};
     border-radius: 5px;
-    color: var(--primary-color);
+    color: ${(props) => props.theme.primaryColor};
     font-size: 1.2rem;
     font-weight: 600;
     padding: 0.5rem;
@@ -208,7 +205,7 @@ const Form = styled.form`
 
 const ErrorMessage = styled.div`
   align-items: center;
-  background: var(--warning);
+  background: ${(props) => props.theme.warning};
   border-radius: 6px;
   color: white;
   display: flex;
