@@ -12,8 +12,6 @@ import {
   removeProductFromListOfFavourites,
 } from './lib/favourites';
 
-import './App.css';
-
 function App() {
   const theme = useContext(ThemeContext);
   const [shopTheme, dispatch] = useReducer(themeReducer, theme);
@@ -89,11 +87,11 @@ function App() {
     <ThemeContext.Provider value={shopTheme}>
       <header>
         <form>
-          <select onChange={setThemeState}>
+          <Select theme={shopTheme} onChange={setThemeState}>
             <option>Bitte Theme auswählen:</option>
             <option value="christmas">Weihnachten</option>
             <option value="valentine">Valentinstag</option>
-          </select>
+          </Select>
         </form>
       </header>
       <Container>
@@ -148,6 +146,14 @@ function App() {
 }
 
 export default App;
+
+const Select = styled.select`
+  background: ${(props) => props.theme.secondaryColor};
+  border: none;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  color: ${(props) => props.theme.primaryColor};
+`;
 
 const Wishlist = styled.div`
   background-color: ${(props) => props.theme.secondaryColor};
