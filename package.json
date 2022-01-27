@@ -9,7 +9,6 @@
     "server": "nodemon server/server.js",
     "client": "cd ./client && npm run dev",
     "start": "node server/server.js",
-    "preinstall": "npm install -g esbuild",
     "postinstall": "cd ./client && npm install && cd ../server && npm install",
     "storybook": "cd ./client && npm run storybook",
     "test": "cd client && npm test",
