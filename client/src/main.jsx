@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { GlobalStyle } from './shared/GlobalStyle';
 
 import App from './App';
+import { ThemeStore } from './contexts/ThemeStore';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <ThemeStore>
+      <App />
+    </ThemeStore>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,10 +1,11 @@
-import { useEffect, useState, useContext, useReducer } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 
-import { ThemeContext } from '../ThemeContext';
-import themeReducer from './lib/themeReducer';
 import ProductForm from './components/ProductForm';
 import ProductCard from './components/ProductCard';
+import TopBar from './components/TopBar';
+
+import { ThemeContext } from './contexts/ThemeStore';
 
 import { saveToLocal, loadFromLocal } from './lib/localStorage';
 import {
@@ -13,9 +14,7 @@ import {
 } from './lib/favourites';
 
 function App() {
-  const theme = useContext(ThemeContext);
-  const [shopTheme, dispatch] = useReducer(themeReducer, theme);
-  console.log(shopTheme);
+  const { theme } = useContext(ThemeContext);
 
   const localStorageProducts = loadFromLocal('_products');
   const localStorageFavouriteProducts = loadFromLocal('_favouriteProducts');
@@ -75,25 +74,9 @@ function App() {
     }
   }
 
-  function setThemeState(event) {
-    const value = event.target.value;
-    dispatch({
-      type: 'CHANGE_THEME',
-      value: value,
-    });
-  }
-
   return (
-    <ThemeContext.Provider value={shopTheme}>
-      <header>
-        <form>
-          <Select theme={shopTheme} onChange={setThemeState}>
-            <option>Bitte Theme auswählen:</option>
-            <option value="christmas">Weihnachten</option>
-            <option value="valentine">Valentinstag</option>
-          </Select>
-        </form>
-      </header>
+    <>
+      <TopBar />
       <Container>
         <ProductForm onAddProduct={addProduct} />
         <CardTree>
@@ -112,10 +95,10 @@ function App() {
         </CardTree>
         <FavouritesDisplay>
           {favouriteProducts.length === 0 ? (
-            <span>{shopTheme.favSymbolEmpty}</span>
+            <span>{theme.favSymbolEmpty}</span>
           ) : (
             <span onClick={() => setWishlistIsOpen(!wishlistIsOpen)}>
-              {shopTheme.favSymbolFilled}{' '}
+              {theme.favSymbolFilled}{' '}
               <small data-testid="wishlist-items">
                 ({favouriteProducts.length})
               </small>
@@ -123,7 +106,7 @@ function App() {
           )}
 
           {wishlistIsOpen && (
-            <Wishlist theme={shopTheme}>
+            <Wishlist theme={theme}>
               <h3>Deine Wunschliste</h3>
               {favouriteProducts.map((product, index) => (
                 <ProductCard
@@ -141,18 +124,18 @@ function App() {
           )}
         </FavouritesDisplay>
       </Container>
-    </ThemeContext.Provider>
+    </>
   );
 }
 
 export default App;
 
 const Select = styled.select`
-  background: ${(props) => props.theme.secondaryColor};
+  background: var(--secondary-color);
   border: none;
   padding: 0.5rem;
   margin: 0.5rem;
-  color: ${(props) => props.theme.primaryColor};
+  color: var(--primary-color);
 `;
 
 const Wishlist = styled.div`

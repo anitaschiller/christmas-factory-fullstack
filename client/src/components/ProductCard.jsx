@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { useContext } from 'react';
-import { ThemeContext } from '../../ThemeContext';
+import styled from 'styled-components';
+import { ThemeContext } from '../contexts/ThemeStore';
 
 export default function ProductCard({
   index,
@@ -8,10 +8,10 @@ export default function ProductCard({
   isFavourite,
   onAddToFavourites,
 }) {
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
+
   return (
     <Card
-      theme={theme}
       className={'area' + (index < 10 ? index + 1 : '')}
       style={index > 9 ? { gridRowStart: Math.floor((index - 2) / 4) + 3 } : {}}
     >

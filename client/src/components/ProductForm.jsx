@@ -1,7 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 
-import { ThemeContext } from '../../ThemeContext';
+import { ThemeContext } from '../contexts/ThemeStore';
+
 import TextInput from './TextInput';
 import NumberInput from './NumberInput';
 import Checkbox from './Checkbox';
@@ -12,7 +13,6 @@ import ProductTags from './ProductTags';
 import isProductValid from '../lib/validation';
 
 export default function ProductForm({ onAddProduct }) {
-  const theme = useContext(ThemeContext);
   const initialProduct = {
     name: '',
     price: 0,
@@ -26,6 +26,8 @@ export default function ProductForm({ onAddProduct }) {
   const [categories, setCategories] = useState([]);
   const [product, setProduct] = useState(initialProduct);
   const [hasFormErrors, setHasFormErrors] = useState(false);
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     async function getCategories() {
@@ -80,7 +82,7 @@ export default function ProductForm({ onAddProduct }) {
     <section>
       <h2>{theme.headlineSymbol} Add a new product 🍪</h2>
       {hasFormErrors && (
-        <ErrorMessage theme={theme} data-testid="error-message">
+        <ErrorMessage data-testid="error-message">
           <div>
             {theme.errorMessageSymbol}
             <div className="bubble">🗯</div>
@@ -88,7 +90,7 @@ export default function ProductForm({ onAddProduct }) {
           <p>{theme.errorMessage}</p>
         </ErrorMessage>
       )}
-      <Form theme={theme} onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <TextInput
           onTextInputChange={handleChange}
           name="name"
