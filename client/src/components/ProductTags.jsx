@@ -45,7 +45,11 @@ export default function ProductTags({
       <label htmlFor="tags">{headline}</label>
       <TagsContainer>
         {tags?.map((tag, index) => (
-          <Tag key={index + tag} selected={selectedTagIndex === index}>
+          <Tag
+            data-testid="tag"
+            key={index + tag}
+            selected={selectedTagIndex === index}
+          >
             {tag}
             <span onClick={() => onDeleteTag(tag)}>&times;</span>
           </Tag>

@@ -74,10 +74,10 @@ function App() {
   return (
     <Container>
       <ProductForm onAddProduct={addProduct} />
-      <CardTree>
+      <CardTree data-testid="card-tree">
         {products.map((product, index) => (
           <ProductCard
-            key={index}
+            key={product._id}
             product={product}
             index={index}
             isFavourite={isProductInListOfFavourites(

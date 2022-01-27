@@ -78,7 +78,7 @@ export default function ProductForm({ onAddProduct }) {
     <section>
       <h2>🎄 Add a new product 🍪</h2>
       {hasFormErrors && (
-        <ErrorMessage>
+        <ErrorMessage data-testid="error-message">
           <div>
             🎅🏽
             <div className="bubble">🗯</div>
@@ -148,7 +148,7 @@ export default function ProductForm({ onAddProduct }) {
         </TextInput>
 
         <div>
-          <button>Add Product</button>
+          <button data-testid="add-product-btn">Add Product</button>
           {/* Optional */}
           <button
             type="reset"
