@@ -7,4 +7,4 @@ jobs:
       - name: checkout repository code
         uses: actions/checkout@v2
       - run: npm ci
-      - run: npm test:ci
+      - run: npm run test:ci
