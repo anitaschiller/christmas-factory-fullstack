@@ -80,7 +80,7 @@ export default function ProductForm({ onAddProduct }) {
 
   return (
     <section>
-      <h2>{theme.headlineSymbol} Add a new product 🍪</h2>
+      <Headline>{theme.headlineSymbol} Add a new product 🍪</Headline>
       {hasFormErrors && (
         <ErrorMessage data-testid="error-message">
           <div>
@@ -166,20 +166,24 @@ export default function ProductForm({ onAddProduct }) {
   );
 }
 
+const Headline = styled.h2`
+  color: var(--highlight-color);
+`;
+
 const InputRow = styled.div`
   display: flex;
   align-items: center;
 `;
 
 const Form = styled.form`
-  background: ${(props) => props.theme.secondaryBg};
+  background: var(--secondary-bg);
   padding: 0.7rem 0.5rem 1.2rem;
   border-radius: 10px;
 
   label {
     display: block;
     font-weight: bold;
-    color: ${(props) => props.theme.primaryColor};
+    color: var(--primary-color);
   }
   input,
   select {
@@ -188,10 +192,10 @@ const Form = styled.form`
   }
 
   button {
-    background: ${(props) => props.theme.buttonBg};
-    border: ${(props) => '2px solid' + props.theme.secondaryBg};
+    background: var(--button-bg);
+    border: 2px solid var(--secondary-color);
     border-radius: 5px;
-    color: ${(props) => props.theme.primaryColor};
+    color: var(--primary-color);
     font-size: 1.2rem;
     font-weight: 600;
     padding: 0.5rem;
@@ -207,7 +211,7 @@ const Form = styled.form`
 
 const ErrorMessage = styled.div`
   align-items: center;
-  background: ${(props) => props.theme.warning};
+  background: var(--warning);
   border-radius: 6px;
   color: white;
   display: flex;

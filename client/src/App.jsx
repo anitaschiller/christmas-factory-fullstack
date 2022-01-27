@@ -130,16 +130,8 @@ function App() {
 
 export default App;
 
-const Select = styled.select`
-  background: var(--secondary-color);
-  border: none;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  color: var(--primary-color);
-`;
-
 const Wishlist = styled.div`
-  background-color: ${(props) => props.theme.secondaryColor};
+  background-color: var(--secondary-color);
   border: 3px solid white;
   border-radius: 5px;
   display: flex;
@@ -159,6 +151,7 @@ const FavouritesDisplay = styled.aside`
   span {
     font-size: 2rem;
     text-align: right;
+    color: var(--highlight-color);
     small {
       font-size: 1rem;
     }

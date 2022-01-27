@@ -27,15 +27,15 @@ export default function ProductCard({
 }
 
 const Card = styled.article`
-  background: ${(props) => props.theme.secondaryColor};
+  background: var(--secondary-color);
   border-radius: 8px;
   grid-column: span 2;
   padding: 0.5rem 1rem 0.5rem;
   position: relative;
 
   &:hover {
-    background: ${(props) => props.theme.primaryColor};
-    color: ${(props) => props.theme.secondaryColor};
+    background: var(--primary-color);
+    color: var(--secondary-color);
   }
 `;
 
