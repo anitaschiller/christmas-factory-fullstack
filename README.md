@@ -82,7 +82,7 @@ module.exports = {
 
 5. Add the follwing scripts to your root folder's `package.json`:
 - `"cy:open": "cd ./client && npm run cy:open"`
-- `"cy:run": "cd ./client && npm run cy:run"
+- `"cy:run": "cd ./client && npm run cy:run"`
 
 6. Create a `tests/e2` folder inside your client --> add test files here
 7. In order to use Cypress code completion add the following line to each test file: `/// <reference types="Cypress"/>`
