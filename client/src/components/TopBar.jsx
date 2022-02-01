@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ThemeContext } from '../contexts/ThemeStore';
 
 export default function TopBar() {
-  const { switchTheme } = useContext(ThemeContext);
+  const { theme, switchTheme } = useContext(ThemeContext);
 
   function setThemeState(event) {
     switchTheme(event.target.value);
@@ -11,8 +11,12 @@ export default function TopBar() {
   return (
     <Header>
       <form>
-        <Select onChange={setThemeState}>
-          <option>Bitte Theme auswählen:</option>
+        <Select
+          onChange={setThemeState}
+          data-testid="select-theme"
+          value={theme.title}
+        >
+          <option value="">Bitte Theme auswählen:</option>
           <option value="christmas">🎅🏽 Weihnachten</option>
           <option value="valentine">💝 Valentinstag</option>
           <option value="easter">🐣 Ostern</option>

@@ -21,7 +21,7 @@ const themes = {
     errorMessage: 'Ho ho ho! Please check if all fields are correctly filled.',
   },
   valentine: {
-    title: "valentine's day",
+    title: 'valentine',
     primaryBg: '#474165',
     secondaryBg: '#97354e',
     primaryColor: 'papayawhip',
