@@ -8,10 +8,11 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest --watchAll --verbose",
-    "test:ci": "jest",
+    "test:ci": "npm run lint && npm run prettier && jest",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "prettier": "prettier -c ./src"
   },
   "dependencies": {
     "dotenv": "^11.0.0",
