@@ -13,7 +13,7 @@ export default function ProductCard({
     >
       <h3>{product.name}</h3>
       <p>
-        {product.category} // {product.price} €
+        {product.category} {'//'} {product.price} €
       </p>
       <FavouriteIcon onClick={() => onAddToFavourites(product)}>
         {isFavourite ? '⭐️' : '✩'}
