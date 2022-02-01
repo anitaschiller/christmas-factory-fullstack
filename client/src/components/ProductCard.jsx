@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { ThemeContext } from '../contexts/ThemeStore';
 
 export default function ProductCard({
   index,
@@ -6,6 +8,8 @@ export default function ProductCard({
   isFavourite,
   onAddToFavourites,
 }) {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <Card
       className={'area' + (index < 10 ? index + 1 : '')}
@@ -16,7 +20,7 @@ export default function ProductCard({
         {product.category} {'//'} {product.price} €
       </p>
       <FavouriteIcon onClick={() => onAddToFavourites(product)}>
-        {isFavourite ? '⭐️' : '✩'}
+        {isFavourite ? theme.favSymbolFilled : theme.favSymbolEmpty}
       </FavouriteIcon>
     </Card>
   );

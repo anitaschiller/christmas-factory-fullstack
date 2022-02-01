@@ -6,10 +6,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-    --primary-bg: #021f13;
-    --secondary-bg: #620202;
-    --primary-color: #f8b229;
-    --secondary-color: #146b3a;
+    --primary-bg: ${(props) => props.theme.primaryBg};
+    --secondary-bg: ${(props) => props.theme.secondaryBg};
+    --primary-color: ${(props) => props.theme.primaryColor};
+    --secondary-color: ${(props) => props.theme.secondaryColor};
+    --highlight-color:  ${(props) => props.theme.highlightColor};
     --button-bg: #ea4630;
     --warning: #ea4630;
   }
@@ -26,9 +27,5 @@ export const GlobalStyle = createGlobalStyle`
 
   #root {
     height: 100%;
-  }
-
-  h2 {
-    color: var(--primary-color);
   }
 `;

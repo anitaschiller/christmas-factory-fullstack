@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 
 import ProductForm from './components/ProductForm';
 import ProductCard from './components/ProductCard';
+import TopBar from './components/TopBar';
+
+import { ThemeContext } from './contexts/ThemeStore';
 
 import { saveToLocal, loadFromLocal } from './lib/localStorage';
 import {
@@ -10,9 +13,9 @@ import {
   removeProductFromListOfFavourites,
 } from './lib/favourites';
 
-import './App.css';
-
 function App() {
+  const { theme } = useContext(ThemeContext);
+
   const localStorageProducts = loadFromLocal('_products');
   const localStorageFavouriteProducts = loadFromLocal('_favouriteProducts');
 
@@ -72,60 +75,63 @@ function App() {
   }
 
   return (
-    <Container>
-      <ProductForm onAddProduct={addProduct} />
-      <CardTree data-testid="card-tree">
-        {products.map((product, index) => (
-          <ProductCard
-            key={product._id}
-            product={product}
-            index={index}
-            isFavourite={isProductInListOfFavourites(
-              favouriteProducts,
-              product
-            )}
-            onAddToFavourites={addToFavourites}
-          />
-        ))}
-      </CardTree>
-      <FavouritesDisplay>
-        {favouriteProducts.length === 0 ? (
-          <span>✩</span>
-        ) : (
-          <span onClick={() => setWishlistIsOpen(!wishlistIsOpen)}>
-            ⭐️{' '}
-            <small data-testid="wishlist-items">
-              ({favouriteProducts.length})
-            </small>
-          </span>
-        )}
+    <>
+      <TopBar />
+      <Container>
+        <ProductForm onAddProduct={addProduct} />
+        <CardTree>
+          {products.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              index={index}
+              isFavourite={isProductInListOfFavourites(
+                favouriteProducts,
+                product
+              )}
+              onAddToFavourites={addToFavourites}
+            />
+          ))}
+        </CardTree>
+        <FavouritesDisplay>
+          {favouriteProducts.length === 0 ? (
+            <span>{theme.favSymbolEmpty}</span>
+          ) : (
+            <span onClick={() => setWishlistIsOpen(!wishlistIsOpen)}>
+              {theme.favSymbolFilled}{' '}
+              <small data-testid="wishlist-items">
+                ({favouriteProducts.length})
+              </small>
+            </span>
+          )}
 
-        {wishlistIsOpen && (
-          <Wishlist>
-            <h3>Deine Wunschliste</h3>
-            {favouriteProducts.map((product, index) => (
-              <ProductCard
-                key={product._id}
-                product={product}
-                index={index}
-                isFavourite={isProductInListOfFavourites(
-                  favouriteProducts,
-                  product
-                )}
-                onAddToFavourites={addToFavourites}
-              />
-            ))}
-          </Wishlist>
-        )}
-      </FavouritesDisplay>
-    </Container>
+          {wishlistIsOpen && (
+            <Wishlist theme={theme}>
+              <h3>Deine Wunschliste</h3>
+              {favouriteProducts.map((product, index) => (
+                <ProductCard
+                  key={product._id}
+                  product={product}
+                  index={index}
+                  isFavourite={isProductInListOfFavourites(
+                    favouriteProducts,
+                    product
+                  )}
+                  onAddToFavourites={addToFavourites}
+                />
+              ))}
+            </Wishlist>
+          )}
+        </FavouritesDisplay>
+      </Container>
+    </>
   );
 }
 
 export default App;
 
 const Wishlist = styled.div`
-  background-color: #fcdc3b;
+  background-color: var(--secondary-color);
   border: 3px solid white;
   border-radius: 5px;
   display: flex;
@@ -145,6 +151,7 @@ const FavouritesDisplay = styled.aside`
   span {
     font-size: 2rem;
     text-align: right;
+    color: var(--highlight-color);
     small {
       font-size: 1rem;
     }
