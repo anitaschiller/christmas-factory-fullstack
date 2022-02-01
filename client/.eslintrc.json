@@ -1,0 +1,34 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest/globals": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "jest"],
+  "rules": {
+    "prettier/prettier": "warn",
+    "no-unused-vars": "warn",
+    "react/jsx-uses-vars": 1,
+    "react/jsx-uses-react": 1,
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.jsx", "*.js"]
+    }
+  ]
+}
