@@ -8,6 +8,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest --watchAll --verbose",
+    "test:ci": "jest",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "lint": "eslint ./src"
