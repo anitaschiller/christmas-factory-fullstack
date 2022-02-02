@@ -3,5 +3,6 @@
   "integrationFolder": "tests/e2e",
   "video": false,
   "fixturesFolder": "tests/e2e/fixtures",
-  "defaultCommandTimeout": 10000
+  "defaultCommandTimeout": 10000,
+  "videoCompression": 8
 }
