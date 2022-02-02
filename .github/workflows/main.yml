@@ -25,3 +25,9 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_NAME: ${{ secrets.DB_NAME }}
+
+      - name: upload-video-artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-videos
+          path: client/cypress/videos/
