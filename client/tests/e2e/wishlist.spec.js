@@ -1,7 +1,10 @@
+/// <reference types="Cypress"/>
+
 const SERVER_URL = 'http://localhost:4000';
 
 describe('wishlist', () => {
   before(() => {
+    cy.request(SERVER_URL + '/api/prune-database');
     cy.fixture('productData').then((product) =>
       cy.request('POST', SERVER_URL + '/api/products', product)
     );

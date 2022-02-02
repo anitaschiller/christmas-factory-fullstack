@@ -1,7 +1,13 @@
 /// <reference types="Cypress"/>
 
+const SERVER_URL = 'http://localhost:4000';
+
 describe('product form', () => {
   beforeEach(() => {
+    cy.request(SERVER_URL + '/api/prune-database');
+    cy.fixture('categoryData').then((category) =>
+      cy.request('POST', SERVER_URL + '/api/categories', category)
+    );
     cy.visit('/');
     cy.viewport(1200, 800);
   });
