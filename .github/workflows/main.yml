@@ -18,4 +18,10 @@ jobs:
       - name: end-to-end-tests
         uses: cypress-io/github-action@v2
         with:
+          build: npm run build
           command: npm run test:e2e:ci
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
