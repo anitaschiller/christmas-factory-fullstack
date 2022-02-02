@@ -13,7 +13,7 @@
     "storybook": "cd ./client && npm run storybook",
     "test": "cd client && npm test",
     "test:ci": "cd client && npm run test:ci",
-    "test:e2e:ci": "CYPRESS_BASE_URL=http://localhost:4000 start-server-and-test 'npm start' http://localhost:4000 cy:open",
+    "test:e2e:ci": "CYPRESS_BASE_URL=http://localhost:4000 start-server-and-test 'npm start' http://localhost:4000 cy:run",
     "cy:open": "cd ./client && npm run cy:open",
     "cy:run": "cd ./client && npm run cy:run"
   },
