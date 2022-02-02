@@ -79,7 +79,7 @@ function App() {
       <TopBar />
       <Container>
         <ProductForm onAddProduct={addProduct} />
-        <CardTree>
+        <CardTree data-testid="card-tree">
           {products.map((product, index) => (
             <ProductCard
               key={index}

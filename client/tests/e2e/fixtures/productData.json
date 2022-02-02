@@ -1,0 +1,8 @@
+{
+  "name": "Osterei",
+  "price": 8,
+  "category": "Handbemalte Eier",
+  "packageSize": "M",
+  "tags": ["bunt", "handbemalt"],
+  "contactEmail": "anita@anita.de"
+}
